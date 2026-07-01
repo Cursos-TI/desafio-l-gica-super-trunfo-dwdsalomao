@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
+// Desafio Super Trunfo - Cidades
 // Tema 2 - Comparação das Cartas
 // Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
 // Siga os comentários para implementar cada parte do desafio.
@@ -17,7 +17,7 @@ int main() {
     char nome_cidade2[50]; 
     unsigned long int populacao1, populacao2; 
     float area1, area2, pib1, pib2, densidade_populacional1, densidade_populacional2, pib_per_capita1, pib_per_capita2;
-    int num_pts_turisticos1, num_pts_turisticos2;
+    int num_pts_turisticos1, num_pts_turisticos2, escolhaAtributo;
     
     // Cadastro das Cartas:
             // entrada dos dados da carta #1
@@ -121,21 +121,123 @@ printf("\n\n\n-- Carta 2 --\n"
         "PIB per Capita: %.2f reais\n", estado2, codigo_completo2, nome_cidade2, populacao2,
         area2, pib2, num_pts_turisticos2, densidade_populacional2, pib_per_capita2);
 
-/*comparação somente de um atributo entre as cartas para determinar 
-a vencedora e a exibição dos resultados da comparação pela função if-else*/
+printf("\n\n\n"); // espaço usado para que o usuário veja com mais clareza a separação dos dados das cartas e do menu interativo
 
-printf("\n\n\n--- Comparação de Cartas (Atributo: População): ---\n");
 
-    if (populacao1 > populacao2) {
-        printf("\nCarta 1 - %s (%s): %lu\nCarta 2 - %s (%s): %lu\nResultado: Carta 1 (%s) venceu!\n\n", 
-        nome_cidade1, estado1, populacao1, nome_cidade2, estado2, populacao2, nome_cidade1); 
-        /*se a comparação for verdadeira, exibirá a carta 1 como vencedora*/
-    } else {
-        printf("\nCarta 1 - %s (%s): %lu\nCarta 2 - %s (%s): %lu\nResultado: Carta 2 (%s) venceu!\n\n", 
-        nome_cidade1, estado1, populacao1, nome_cidade2, estado2, populacao2, nome_cidade2);
-        /*se a comparação for falsa, exibirá a carta 2 como vencedora*/
-    }
+/*área para exibição de menu interativo para escolher qual atributo 
+será comparado no jogo*/
+
+//Regras das comparações 
+printf("### COMPARE AS CARTAS ###\n");
+printf("Escolha uma atributo para comparar as cartas:\n");
+printf("1. População\n");
+printf("2. Área\n");
+printf("3. PIB\n");
+printf("4. Número de pontos turísticos\n");
+printf("5. Densidade demográfica\n");
+printf("Digite abaixo sua opção: \n");
+scanf("%d", &escolhaAtributo);
+
+
+/*lógica implementada para comparação das cartas segundo
+o atributo escolhido pelo usuário*/
+
+    switch (escolhaAtributo)
+    {
+    case 1: // escolha do atributo POPULAÇAO para comparação
+        if (populacao1 == populacao2){
+            printf("\n\n### Empate! ###\n"
+                    "A cidade %s tem %d habitantes e a cidade %s tem %d habitantes.\n"
+                    "Portanto, ambas as cartas possuem o mesmo valor do atributo POPULAÇÃO.", nome_cidade1, populacao1, nome_cidade2, populacao2);
+        } else if (populacao1 > populacao2){
+            printf("\n\n### A carta 1 venceu ###\n"
+                    "Atributo: População\n"
+                    "%s: %d hab.\n"
+                    "%s: %d hab.\n", nome_cidade1, populacao1, nome_cidade2, populacao2);
+        } else if (populacao1 < populacao2){
+            printf("\n\n### A carta 2 venceu ###\n"
+                    "Atributo: População\n"
+                    "%s: %d hab.\n"
+                    "%s: %d hab.\n", nome_cidade1, populacao1, nome_cidade2, populacao2);
+        }
+        break;
+
+    case 2: // escolha do atributo ÁREA para comparação
+        if (area1 == area2){
+            printf("\n\n### Empate! ###\n"
+                    "A cidade %s tem %.2f km² e a cidade %s tem %.2f km².\n"
+                    "Portanto, ambas as cartas possuem o mesmo valor do atributo ÁREA.", nome_cidade1, area1, nome_cidade2, area2);
+        } else if (area1 > area2){
+            printf("\n\n### A carta 1 venceu ###\n"
+                    "Atributo: Área\n"
+                    "%s: %.2f km²\n"
+                    "%s: %.2f\n km²", nome_cidade1, area1, nome_cidade2, area2);
+        } else if (populacao1 < populacao2){
+            printf("\n\n### A carta 2 venceu ###\n"
+                    "Atributo: Área\n"
+                    "%s: %.2f km²\n"
+                    "%s: %.2f km²\n", nome_cidade1, area1, nome_cidade2, area2);
+        }
+        break;
     
+    case 3: // escolha do atributo PIB para comparação
+        if (pib1 == pib2){
+            printf("\n\n### Empate! ###\n"
+                    "A cidade %s tem R$ %.2f bilhões e a cidade %s tem R$ %.2f bilhões.\n"
+                    "Portanto, ambas as cartas possuem o mesmo valor do atributo PIB.", nome_cidade1, pib1, nome_cidade2, pib2);
+        } else if (pib1 > pib2){
+            printf("\n\n### A carta 1 venceu ###\n"
+                    "Atributo: PIB\n"
+                    "%s: %.2f bilhões de reais\n"
+                    "%s: %.2f\n bilhões de reais", nome_cidade1, pib1, nome_cidade2, pib2);
+        } else if (pib1 < pib2){
+            printf("\n\n### A carta 2 venceu ###\n"
+                    "Atributo: PIB\n"
+                    "%s: %.2f bilhões de reais\n"
+                    "%s: %.2f bilhões de reais\n", nome_cidade1, pib1, nome_cidade2, pib2);
+        }
+        break;
+
+    case 4: // escolha do atributo N# PONTOS TURÍSTICOS para comparação
+        if (num_pts_turisticos1 == num_pts_turisticos2){
+            printf("\n\n### Empate! ###\n"
+                    "A cidade %s tem %d pontos turísticos e a cidade %s tem %d pontos turísticos.\n"
+                    "Portanto, ambas as cartas possuem o mesmo valor do atributo NÚMERO DE PONTOS TURÍSTICOS.", nome_cidade1, num_pts_turisticos1, nome_cidade2, num_pts_turisticos2);
+        } else if (num_pts_turisticos1 > num_pts_turisticos2){
+            printf("\n\n### A carta 1 venceu ###\n"
+                    "Atributo: Número de pontos turísticos\n"
+                    "%s: %d pontos turísticos\n"
+                    "%s: %d pontos turísticos", nome_cidade1, num_pts_turisticos1, nome_cidade2, num_pts_turisticos2);
+        } else if (num_pts_turisticos1 < num_pts_turisticos2){
+            printf("\n\n### A carta 2 venceu ###\n"
+                    "Atributo: Números de pontos turísticos\n"
+                    "%s: %d pontos turísticos\n"
+                    "%s: %d pontos turísticos\n", nome_cidade1, num_pts_turisticos1, nome_cidade2, num_pts_turisticos2);
+        }
+        break;
+
+    case 5: // escolha do atributo DENSIDADE POPULACIONAL para comparação
+        if (densidade_populacional1 == densidade_populacional2){
+            printf("\n\n### Empate! ###\n"
+                    "A cidade %s tem %.2f hab/km². e a cidade %s tem %.2f hab/km².\n"
+                    "Portanto, ambas as cartas possuem o mesmo valor do atributo DENSIDADE EDEMOGRÁFICA.", nome_cidade1, densidade_populacional1, nome_cidade2, densidade_populacional2);
+        } else if (densidade_populacional1 < densidade_populacional2){
+            printf("\n\n### A carta 1 venceu ###\n"
+                    "Atributo: Densidade Populacional\n"
+                    "%s: %.2f hab/km²\n"
+                    "%s: %.2f hab/km²\n", nome_cidade1, densidade_populacional1, nome_cidade2, densidade_populacional2);
+        } else if (densidade_populacional1 > densidade_populacional2){
+            printf("\n\n### A carta 2 venceu ###\n"
+                    "Atributo: Densidade Populacional\n"
+                    "%s: %.2f hab/km²\n"
+                    "%s: %.2f hab/km¹\n", nome_cidade1, densidade_populacional1, nome_cidade2, densidade_populacional2);
+        }
+        break;
+    default:
+        printf("\n\nSeleção de atributo inválido.\n"
+                "Insira uma opção válida.\n\n");
+        break;
+    }
 
     return 0;
 }
